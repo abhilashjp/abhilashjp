@@ -5,22 +5,23 @@
 <style src="/style.css"></style>
 </head>
 <body>
-// Blog
-section#blog.section.blog
-  .container
-    //
-    header.section-heading
-      h2 From The Blog
-      span Awesome articles from the blog
-    //
-    #blogContent.section-content
-      #jsonContent.row
-    // /#blogContent
-    .text-center
-      a#loadBlogPosts.btn.btn-dark(href='//medium.jasonmdesign.com')
-        | View All
-        span.fa.fa-angle-double-right
-  // /.container
-// Blog
+
+<!-- Blog-->
+<section class="section blog" id="blog">
+  <div class="container">
+    <!---->
+    <header class="section-heading">
+      <h2>From The Blog</h2><span>Awesome articles from the blog</span>
+    </header>
+    <!---->
+    <div class="section-content" id="blogContent">
+      <div class="row" id="jsonContent"></div>
+    </div>
+    <!-- /#blogContent-->
+    <div class="text-center"><a class="btn btn-dark" id="loadBlogPosts" href="//medium.jasonmdesign.com">View All<span class="fa fa-angle-double-right"></span></a></div>
+  </div>
+  <!-- /.container-->
+</section>
+<!-- Blog-->
   </body>
 </html>
