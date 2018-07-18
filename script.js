@@ -1,40 +1,45 @@
-$(function () {
-	var $content = $('#jsonContent');
-	var data = {
-		rss_url: 'https://medium.com/feed/@abhilashjp'
-	};
-	$.get('https://api.rss2json.com/v1/api.json', data, function (response) {
-		if (response.status == 'ok') {
-			var output = '';
-			$.each(response.items, function (k, item) {
-				var visibleSm;
-				if(k < 3){
-					visibleSm = '';
-				 } else {
-					 visibleSm = ' visible-sm';
-				 }
-				output += '<div class="col-sm-6 col-md-4' + visibleSm + '">';
-				output += '<div class="blog-post"><header>';
-				output += '<h4 class="date">' + $.format.date(item.pubDate, "dd<br>MMM") + "</h4>";
-				var tagIndex = item.description.indexOf('<img'); // Find where the img tag starts
-				var srcIndex = item.description.substring(tagIndex).indexOf('src=') + tagIndex; // Find where the src attribute starts
-				var srcStart = srcIndex + 5; // Find where the actual image URL starts; 5 for the length of 'src="'
-				var srcEnd = item.description.substring(srcStart).indexOf('"') + srcStart; // Find where the URL ends
-				var src = item.description.substring(srcStart, srcEnd); // Extract just the URL
-				output += '<div class="blog-element"><img class="img-responsive" src="' + src + '" width="360px" height="240px"></div></header>';
-				output += '<div class="blog-content"><h4><a href="'+ item.link + '">' + item.title + '</a></h4>';
-				output += '<div class="post-meta"><span>By ' + item.author + '</span></div>';
-				var yourString = item.description.replace(/<img[^>]*>/g,""); //replace with your string.
-				var maxLength = 120 // maximum number of characters to extract
-				//trim the string to the maximum length
-				var trimmedString = yourString.substr(0, maxLength);
-				//re-trim if we are in the middle of a word
-				trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
-				output += '<p>' + trimmedString + '...</p>';
-				output += '</div></div></div>';
-				return k < 3;
-			});
-			$content.html(output);
-		}
-	});
-});
+fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@abhilashjp')
+   .then((res) => res.json())
+   .then((data) => {
+      // Filter for acctual posts. Comments don't have categories, therefore can filter for items with categories bigger than 0
+      const res = data.items //This is an array with the content. No feed, no info about author etc..
+      const posts = res.filter(item => item.categories.length > 0) // That's the main trick* !
+
+      // Functions to create a short text out of whole blog's content
+      function toText(node) {
+         let tag = document.createElement('div')
+         tag.innerHTML = node
+         node = tag.innerText
+         return node
+      }
+      function shortenText(text,startingPoint ,maxLength) {
+         return text.length > maxLength?
+         text.slice(startingPoint, maxLength):
+         text
+      }
+
+      // Put things in right spots of markup
+      let output = '';
+      posts.forEach((item) => {
+         output += `
+         <li class="blog__post">
+            <a href="${item.link}">
+               <img src="${item.thumbnail}" class="blog__topImg"></img>
+               <div class="blog__content">
+                  <div class="blog_preview">
+                     <h2 class="blog__title">${shortenText(item.title, 0, 30)+ '...'}</h2>
+                     <p class="blog__intro">${'...' + shortenText(toText(item.content),60, 300)+ '...'}</p>
+                  </div>
+                  <hr>
+                  <div class="blog__info">
+                     <span class="blog__author">${item.author}</span>
+                     <span class="blog__date">${shortenText(item.pubDate,0 ,10)}</span>
+                  </div>
+               </div>
+            <a/>
+         </li>`
+
+      })
+      document.querySelector('.blog__slider').innerHTML = output
+})
+
