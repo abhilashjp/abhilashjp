@@ -1,37 +1,22 @@
-## Welcome to GitHub Pages
+# Hi, I'm Abhilash 👋
 
-You can use the [editor on GitHub](https://github.com/abhilashjp/abhilashjp/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Product leader working at the intersection of **SaaS, AI, billing, pricing, and tax infrastructure**.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+I like building systems that turn complex business rules into simple products.
 
-### Markdown
+### What I'm working on
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- 🧾 [LookupTax](https://lookuptax.com) — tax ID validation infrastructure for global businesses
+- 💰 [UsagePricing](https://usagepricing.com) — pricing intelligence and usage-based pricing research
+- 🤖 Exploring AI-native products and autonomous systems
+- 🌍 Global tax, invoicing, billing & compliance infrastructure
 
-```markdown
-Syntax highlighted code block
+### Interests
 
-# Header 1
-## Header 2
-### Header 3
+`Usage-based pricing` · `AI economics` · `Billing` · `Tax infrastructure` · `SaaS` · `Developer platforms`
 
-- Bulleted
-- List
+### Writing
 
-1. Numbered
-2. List
+I write about **pricing, AI economics, SaaS infrastructure, and product strategy**.
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/abhilashjp/abhilashjp/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+→ [abhilashjohn.com](https://abhilashjohn.com)
